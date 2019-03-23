@@ -6,7 +6,6 @@ public class PickUp : MonoBehaviour
 {
     [SerializeField] private float range;
     [SerializeField] private Transform bone;
-    [SerializeField] private Quaternion weaponRot;
     [SerializeField] private float forcePower;
 
     private Camera cam;
@@ -51,7 +50,7 @@ public class PickUp : MonoBehaviour
 
                     pickedUpWeapon.transform.parent = bone;
                     pickedUpWeapon.transform.localPosition = pickedUpWeapon.GetComponent<Weapon>().WeaponPos;
-                    pickedUpWeapon.transform.localRotation = weaponRot;
+                    pickedUpWeapon.transform.localRotation = pickedUpWeapon.GetComponent<Weapon>().WeaponRot;
 
                     ActiveWeapon = pickedUpWeapon;
                 } else if (Input.GetKeyDown(KeyCode.E) && pickedUpWeapon.transform.parent != transform && ActiveWeapon != null)
@@ -60,7 +59,7 @@ public class PickUp : MonoBehaviour
                     
                     pickedUpWeapon.transform.parent = bone;
                     pickedUpWeapon.transform.localPosition = pickedUpWeapon.GetComponent<Weapon>().WeaponPos;
-                    pickedUpWeapon.transform.localRotation = weaponRot;
+                    pickedUpWeapon.transform.localRotation = pickedUpWeapon.GetComponent<Weapon>().WeaponRot;
                     pickedUpWeapon.SetActive(false);
                 }
             } else if (hit.collider.tag == "Throwable" && Vector3.Distance(transform.position, hit.transform.position) < range)

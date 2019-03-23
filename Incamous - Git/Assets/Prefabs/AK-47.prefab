@@ -132,11 +132,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5981251170008632894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 0ce7a1551074e4da485019404e89da2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPos: {x: 0.0001032782, y: 0.01014256, z: 0.002728653}
+  weaponRot: {x: -0.1497285, y: 0.6910734, z: -0.1497284, w: 0.6910719}
   bulletPrefab: {fileID: 7676133071765607530, guid: 949937150740f4dd2ab07587cdd539c2,
     type: 3}
   maxAmmo: 270

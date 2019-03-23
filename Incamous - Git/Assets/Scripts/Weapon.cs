@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private Vector3 weaponPos;
+    [SerializeField] private Quaternion weaponRot;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private int maxAmmo;
     [SerializeField] private int maxMagAmmo;
@@ -22,6 +23,11 @@ public class Weapon : MonoBehaviour
     public Vector3 WeaponPos
     {
         get { return weaponPos; }
+    }
+
+    public Quaternion WeaponRot
+    {
+        get { return weaponRot; }
     }
 
     // Start is called before the first frame update
