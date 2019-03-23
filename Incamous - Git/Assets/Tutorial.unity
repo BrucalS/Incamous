@@ -17702,12 +17702,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9cb825c174678f49ae7a7080a432268, type: 3}
---- !u!4 &384716273 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8912055372186035410, guid: e3cbbd3edd1ca43ae9d90000b1a182e3,
-    type: 3}
-  m_PrefabInstance: {fileID: 8912055372267375690}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &407173791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43127,61 +43121,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8912055372732233939, guid: e3cbbd3edd1ca43ae9d90000b1a182e3,
-        type: 3}
-      propertyPath: movementSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8912055372732233939, guid: e3cbbd3edd1ca43ae9d90000b1a182e3,
-        type: 3}
-      propertyPath: sensitivity
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8912055372732233939, guid: e3cbbd3edd1ca43ae9d90000b1a182e3,
-        type: 3}
-      propertyPath: minimumVerticalRotation
-      value: -45
-      objectReference: {fileID: 0}
-    - target: {fileID: 8912055372732233939, guid: e3cbbd3edd1ca43ae9d90000b1a182e3,
-        type: 3}
-      propertyPath: maximumVerticalRotation
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 8912055372732233943, guid: e3cbbd3edd1ca43ae9d90000b1a182e3,
-        type: 3}
-      propertyPath: range
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8912055372732233943, guid: e3cbbd3edd1ca43ae9d90000b1a182e3,
-        type: 3}
-      propertyPath: bone
-      value: 
-      objectReference: {fileID: 384716273}
-    - target: {fileID: 8912055372732233943, guid: e3cbbd3edd1ca43ae9d90000b1a182e3,
-        type: 3}
-      propertyPath: weaponRot.x
-      value: -0.1497285
-      objectReference: {fileID: 0}
-    - target: {fileID: 8912055372732233943, guid: e3cbbd3edd1ca43ae9d90000b1a182e3,
-        type: 3}
-      propertyPath: weaponRot.y
-      value: 0.6910734
-      objectReference: {fileID: 0}
-    - target: {fileID: 8912055372732233943, guid: e3cbbd3edd1ca43ae9d90000b1a182e3,
-        type: 3}
-      propertyPath: weaponRot.z
-      value: -0.1497284
-      objectReference: {fileID: 0}
-    - target: {fileID: 8912055372732233943, guid: e3cbbd3edd1ca43ae9d90000b1a182e3,
-        type: 3}
-      propertyPath: weaponRot.w
-      value: 0.6910719
-      objectReference: {fileID: 0}
-    - target: {fileID: 8912055372732233943, guid: e3cbbd3edd1ca43ae9d90000b1a182e3,
-        type: 3}
-      propertyPath: forcePower
-      value: 700
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3cbbd3edd1ca43ae9d90000b1a182e3, type: 3}

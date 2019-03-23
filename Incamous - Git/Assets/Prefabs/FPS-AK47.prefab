@@ -1081,7 +1081,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8912055372732233949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: b779518379dba4bcfbc304043286aeb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1098,14 +1097,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8912055372732233949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 23e5ca2d77742414c90bfbc46e709611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
   bone: {fileID: 8912055372186035410}
-  weaponPos: {x: 0.0001032782, y: 0.01014256, z: 0.002728653}
-  weaponRot: {x: -0.1497285, y: 0.6910734, z: -0.1497284, w: 0.6910719}
   forcePower: 700
 --- !u!114 &751514782
 MonoBehaviour:
@@ -1116,7 +1112,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8912055372732233949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 6cc39e93a632b4123857f8714931f92b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
