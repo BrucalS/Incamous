@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Weapon : MonoBehaviour
     private bool isReloading = false;
     private Camera cam;
     private PickUp pickUp;
+    private Text reloadingText;
 
     public Vector3 WeaponPos
     {
@@ -36,6 +38,7 @@ public class Weapon : MonoBehaviour
         bulletPositionHolder = transform.GetChild(0).gameObject;
         cam = Camera.main;
         pickUp = GameManager.Instance.Player.GetComponent<PickUp>();
+        reloadingText = GameManager.Instance.ReloadingText;
 
         magAmmo = maxMagAmmo;
     }
@@ -48,8 +51,8 @@ public class Weapon : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0) && Time.time > nextBullet)
             {
                 if (magAmmo > 0 && !isReloading)
-                Shoot();
-            } else if (Input.GetKeyDown(KeyCode.R))
+                    Shoot();
+            } else if (Input.GetKeyDown(KeyCode.R) && magAmmo < maxMagAmmo)
                 StartCoroutine(Reload());
         }
     }
@@ -84,7 +87,7 @@ public class Weapon : MonoBehaviour
         if (!isReloading)
         {
             isReloading = true;
-            Debug.Log("Realoding...");
+            reloadingText.gameObject.SetActive(true);
             int bulletsToAdd = 0;
 
             if (maxAmmo >= maxMagAmmo)
@@ -95,7 +98,7 @@ public class Weapon : MonoBehaviour
                 yield break;
             
             yield return new WaitForSecondsRealtime(reloadTime);
-            Debug.Log("Done Reloading");
+            reloadingText.gameObject.SetActive(false);
 
             maxAmmo -= bulletsToAdd;
             magAmmo += bulletsToAdd;
