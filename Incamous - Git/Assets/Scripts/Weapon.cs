@@ -7,7 +7,6 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private Vector3 weaponPos;
     [SerializeField] private Quaternion weaponRot;
-    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private int maxAmmo;
     [SerializeField] private int maxMagAmmo;
     [SerializeField] private float reloadTime;
@@ -30,6 +29,11 @@ public class Weapon : MonoBehaviour
     public Quaternion WeaponRot
     {
         get { return weaponRot; }
+    }
+
+    public int MagAmmo
+    {
+        get { return magAmmo; }
     }
 
     // Start is called before the first frame update
@@ -59,26 +63,32 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
-        nextBullet = Time.time + bulletDelay;
-
-        GameObject bullet;
-        bullet = Instantiate(bulletPrefab, transform) as GameObject;
-        bullet.transform.localPosition = bulletPositionHolder.transform.localPosition;
-
-        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 500))
+        for (int i = 0; i < GameManager.Instance.BulletsPool.Count; i++)
         {
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            if (!GameManager.Instance.BulletsPool[i].activeInHierarchy)
+            {
+                nextBullet = Time.time + bulletDelay;
+                
+                GameManager.Instance.BulletsPool[i].transform.position = bulletPositionHolder.transform.position;
+                Debug.Log("Position: " + GameManager.Instance.BulletsPool[i].transform.position + " " + bulletPositionHolder.transform.position);
+                GameManager.Instance.BulletsPool[i].SetActive(true);
 
-            bullet.transform.parent = null;
-            bullet.transform.localScale = bulletPrefab.transform.localScale;
-            bullet.transform.LookAt(hit.point);
+                Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+                RaycastHit hit;
 
-            rb.AddForce((hit.point - transform.position) * bulletSpeed);
-            magAmmo--;
-            Debug.Log(magAmmo);
+                if (Physics.Raycast(ray, out hit, 500))
+                {
+                    Rigidbody rb = GameManager.Instance.BulletsPool[i].GetComponent<Rigidbody>();
+
+                    GameManager.Instance.BulletsPool[i].transform.LookAt(hit.point);
+
+                    rb.AddForce((hit.point - transform.position) * bulletSpeed);
+                    magAmmo--;
+                    Debug.Log(magAmmo);
+                }
+
+                break;
+            }
         }
     }
 

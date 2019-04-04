@@ -9,14 +9,18 @@ public class BulletImpactFade : MonoBehaviour
     private Color alphaColor;
     private bool canFade = false;
     
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         alphaColor = meshRenderer.material.color;
         alphaColor.a = 0.0f;
 
-        StartCoroutine(TimeBeforeFade());
+        Invoke("HideBulletImpact", 5.0f);
+    }
+
+    void OnDisable()
+    {
+        CancelInvoke();
     }
 
     // Update is called once per frame
@@ -27,13 +31,12 @@ public class BulletImpactFade : MonoBehaviour
             meshRenderer.material.color = Color.Lerp(meshRenderer.material.color, alphaColor, timeToFade * Time.deltaTime);
             
             if (meshRenderer.material.color.a <= 0.0001026351f)
-                Destroy(gameObject);
+                gameObject.SetActive(false);
         }
     }
 
-    private IEnumerator TimeBeforeFade()
+    private void HideBulletImpact()
     {
-        yield return new WaitForSecondsRealtime(10.0f);
         canFade = true;
     }
 }

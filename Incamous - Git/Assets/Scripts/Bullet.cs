@@ -6,38 +6,64 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private GameObject bulletImpactPrefab;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        Destroy(gameObject, 3.0f);
+        GetComponent<Rigidbody>().WakeUp();
+        Invoke("HideBullet", 2.0f);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDisable()
     {
-        
+        GetComponent<Rigidbody>().Sleep();
+        CancelInvoke();
+    }
+
+    private void HideBullet()
+    {
+        gameObject.SetActive(false);
     }
 
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Weapon" && collision.gameObject.tag != "Player")
         {
-            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-            RaycastHit hit;
+            BulletHole(collision.gameObject);
 
-            if (Physics.Raycast(ray, out hit, 500))
+            if (collision.gameObject.tag == "Shooting Range Dummies")
             {
-                if (hit.transform.gameObject == collision.gameObject)
-                {
-                    Debug.DrawLine(ray.origin, hit.point, Color.green);
-                    GameObject bulletImpact;
-                    bulletImpact = Instantiate(bulletImpactPrefab, collision.gameObject.transform) as GameObject;
-                    bulletImpact.transform.position = hit.point + (hit.normal * 0.025f);
-                    bulletImpact.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                Tutorial tut;
+                tut = GameManager.Instance.GetComponent<Tutorial>();
 
-                    Debug.Log("Hit the target!");
-                    Destroy(gameObject);
+                tut.DummiesShot++;
+                Debug.Log("Dummies Shot: " + tut.DummiesShot);
+            }
+        }
+    }
+
+    private void BulletHole(GameObject collidedGameObject)
+    {
+        for (int i = 0; i <  GameManager.Instance.BulletImpactsPool.Count; i++)
+        {
+            if (!GameManager.Instance.BulletImpactsPool[i].activeInHierarchy)
+            {
+                Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, 500))
+                {
+                    if (hit.transform.gameObject == collidedGameObject)
+                    {
+                        GameManager.Instance.BulletImpactsPool[i].transform.position = hit.point + (hit.normal * 0.025f);
+                        GameManager.Instance.BulletImpactsPool[i].transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                        GameManager.Instance.BulletImpactsPool[i].transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+                        GameManager.Instance.BulletImpactsPool[i].transform.SetParent(collidedGameObject.transform);
+                        
+                        GameManager.Instance.BulletImpactsPool[i].SetActive(true);
+                        gameObject.SetActive(false);
+                    }
                 }
+
+                break;
             }
         }
     }
